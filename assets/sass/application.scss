@@ -1,5 +1,5 @@
 @import "normalize";
-@import "compass/css3"
+@import "compass/css3";
 body {
   font-family: 'Helvetica Neue', 'Lucida Grande', Arial;
   background: url('../images/metall.jpg');
@@ -9,6 +9,8 @@ body {
 #container {
   width: 80em;
   margin: 4em auto;
+  padding: 1em;
   background-color: #ccc;
-  @
+  @include border-radius(35px, 30px);
+  @include single-box-shadow(#444, 0, 0, 10px, 10px, false);
 }
