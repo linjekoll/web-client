@@ -1,3 +1,14 @@
+@import "normalize";
+@import "compass/css3"
 body {
   font-family: 'Helvetica Neue', 'Lucida Grande', Arial;
+  background: url('../images/metall.jpg');
+  background-repeat: repeat; 
+}
+
+#container {
+  width: 80em;
+  margin: 4em auto;
+  background-color: #ccc;
+  @
 }
