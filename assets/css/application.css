@@ -442,14 +442,14 @@ table {
   border-spacing: 0;
 }
 
-/* line 3, ../sass/application.scss */
+/* line 4, ../sass/application.scss */
 body {
   font-family: 'Helvetica Neue', 'Lucida Grande', Arial;
   background: url("../images/metall.jpg");
   background-repeat: repeat;
 }
 
-/* line 9, ../sass/application.scss */
+/* line 10, ../sass/application.scss */
 #container {
   width: 80em;
   margin: 4em auto;
