@@ -1,7 +1,8 @@
 App.models.Vehicle = Backbone.Model.extend({
+  
   /* Constructor
-  * arg: shape - Raphael element to be animated
-  */
+   * arg: shape - Raphael element to be animated
+   */
   initialize: function(shape) {
     this.set({shape: shape});
     this.get("shape").hover(function() {

@@ -19,23 +19,57 @@
   <script src="assets/js/lib/head.min.js" type="text/javascript" charset="utf-8"></script>
   
   <script type="text/javascript" charset="utf-8">
+    App = [];
+    App.models = [];
+    App.views = [];
     head.js(
       "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js",
       "assets/js/lib/underscore.js",
       "assets/js/lib/backbone.js",
-      "assets/js/lib/raphael-min.js"
+      "assets/js/lib/raphael-min.js",
+      "assets/js/models/line.js",
+      "assets/js/models/stop.js",
+      "assets/js/models/vehicle.js",
+      "assets/js/views/vehicle.js",
+      "assets/js/views/line.js",
+      "assets/js/app.js"
     );
+  </script>
+  
+  <script type="text/template" id="line_template">
+    <div id="line_<%= name%>">
+      Line: <%= name%>
+    </div>
   </script>
 </head>
 
 <body>
-
-  <div id="container">
-    <header>
-
+  <div id="outer">
+    <nav id="upper_nav">
+      <ul>
+        <li><a href="/login">Login</a></li>
+        |
+        <li><a href="/Register">Register</a></li>
+        |
+        <li><a href="Contact">Contact</a></li>
+      </ul>
+    </nav>
+    
+    <header id="search_bar">
+      <form id="search_form" action="/search" method="post">
+        <input type="text" name="search_key" value="Sök efter en station" id="search_key">
+        <input type="submit" name="submit_search" value="Sök" id="submit_search">
+      </form>
     </header>
-    <div id="main" role="main">
-        Main Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
+    
+    <ul id="lines">
+      <li id="4">4</li>
+      <li id="5">5</li>
+      <li id="9">9</li>
+    </ul>
+
+  <section id="container">
+        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
 
 Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
 
@@ -44,12 +78,8 @@ My money's in that office, right? If she start giving me some bullshit about it 
 Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
 
 Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.
-    </div>
-    <footer>
+  </section> <!--! end of #container -->
 
-    </footer>
-  </div> <!--! end of #container -->
-
-  
+  </div>
 </body>
 </html>

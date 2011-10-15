@@ -15,3 +15,26 @@ Navigate to the downloaded folder and run bundler.
 Run `foreman start` in the application folder, `foreman` will do the following.
 
 1. Watch and compile `sass` and `scss` on-the-fly.
+
+## Models
+
+Models extend Backbone.Model if no other information is given
+
+### Line
+- Extends: Collection
+- Arguments: line id, colours (foreground, background)
+- Fetches stops from the server using paths like `/lines/:line_id/stops`
+
+### Vehicle
+- Arguments: journey id, vehicle type
+
+## Views
+
+### Line
+- Probably contains a canvas for Raphael and info like end stations and line name
+- Iterates through the Line collection to find typical travel times and calculates relative pixel distances
+
+### Vehicle
+- Reacts to changes in the Vehicle model:
+  - time: if vehicle is moving, change animation to reflect new time. Otherwise, do nothing?
+  - coordinates: if vehicle is 

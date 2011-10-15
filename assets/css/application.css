@@ -443,26 +443,108 @@ table {
 }
 
 /* line 4, ../sass/application.scss */
-body {
-  font-family: 'Helvetica Neue', 'Lucida Grande', Arial;
-  background: url("../images/metall.jpg");
-  background-repeat: repeat;
+input[type="text"] {
+  -moz-box-shadow: 0 0 10px 10px black;
+  -webkit-box-shadow: 0 0 10px 10px black;
+  -o-box-shadow: 0 0 10px 10px black;
+  box-shadow: 0 0 10px 10px black;
 }
 
-/* line 10, ../sass/application.scss */
-#container {
-  width: 80em;
+/* line 8, ../sass/application.scss */
+body {
+  font-family: 'Helvetica Neue', 'Lucida Grande', Arial;
+  width: 100%;
+  height: 100%;
+  background-color: #00122D;
+}
+
+/* line 15, ../sass/application.scss */
+a {
+  color: inherit;
+}
+/* line 17, ../sass/application.scss */
+a:hover {
+  color: inherit;
+}
+/* line 20, ../sass/application.scss */
+a:visited {
+  color: inherit;
+}
+
+/* line 25, ../sass/application.scss */
+#upper_nav {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: #fff;
+  -moz-box-shadow: 0 0 20px 20px #444444;
+  -webkit-box-shadow: 0 0 20px 20px #444444;
+  -o-box-shadow: 0 0 20px 20px #444444;
+  box-shadow: 0 0 20px 20px #444444;
+  width: 100%;
+}
+
+/* line 34, ../sass/application.scss */
+#upper_nav ul li {
+  display: inline-block;
+}
+
+/* line 38, ../sass/application.scss */
+#lines li {
+  display: inline-block;
+  padding: 0.5em;
+  font-size: 5em;
+  margin-right: 0.5em;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  -o-border-radius: 4px / 4px;
+  -ms-border-radius: 4px / 4px;
+  -khtml-border-radius: 4px / 4px;
+  border-radius: 4px / 4px;
+  -moz-box-shadow: 0px 0px 7px 7px #c1c1c1;
+  -webkit-box-shadow: 0px 0px 7px 7px #c1c1c1;
+  -o-box-shadow: 0px 0px 7px 7px #c1c1c1;
+  box-shadow: 0px 0px 7px 7px #c1c1c1;
+  background-color: #ECF3EC;
+  border-top: 3px solid #F6FCF5;
+  border-bottom: 3px solid #D2D8D2;
+  border-left: 3px solid #E3E9E3;
+  border-right: 3px solid #DEE4DE;
+  text-shadow: #555555 -1px 2px 1px;
+}
+/* line 51, ../sass/application.scss */
+#lines li:hover {
+  background-color: #191919;
+  color: #efefef;
+  -moz-box-shadow: 0px 0px 7px 7px #bbbbbb;
+  -webkit-box-shadow: 0px 0px 7px 7px #bbbbbb;
+  -o-box-shadow: 0px 0px 7px 7px #bbbbbb;
+  box-shadow: 0px 0px 7px 7px #bbbbbb;
+  cursor: pointer;
+}
+
+/* line 63, ../sass/application.scss */
+#container,
+#search_bar,
+#lines,
+.line {
+  width: 70%;
+  background-color: #E2E8E2;
   margin: 4em auto;
-  padding: 1em;
-  background-color: #ccc;
-  -webkit-border-radius: 35px 30px;
-  -moz-border-radius: 35px / 30px;
-  -o-border-radius: 35px / 30px;
-  -ms-border-radius: 35px / 30px;
-  -khtml-border-radius: 35px / 30px;
-  border-radius: 35px / 30px;
-  -moz-box-shadow: 0 0 10px 10px #444444;
-  -webkit-box-shadow: 0 0 10px 10px #444444;
-  -o-box-shadow: 0 0 10px 10px #444444;
-  box-shadow: 0 0 10px 10px #444444;
+  padding: 2em;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  -o-border-radius: 4px / 4px;
+  -ms-border-radius: 4px / 4px;
+  -khtml-border-radius: 4px / 4px;
+  border-radius: 4px / 4px;
+  -moz-box-shadow: 0 0 20px 20px #444444;
+  -webkit-box-shadow: 0 0 20px 20px #444444;
+  -o-box-shadow: 0 0 20px 20px #444444;
+  box-shadow: 0 0 20px 20px #444444;
+}
+
+/* line 72, ../sass/application.scss */
+#search_bar {
+  margin-top: 8em;
 }
