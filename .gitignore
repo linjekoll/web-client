@@ -1,3 +1,4 @@
 .sass-cache/
 .DS_Store
-assets/css/application.css
+public/javascripts/*
+public/stylesheets/*

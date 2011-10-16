@@ -12,34 +12,14 @@
   <link rel="icon" href="favicon.ico">
   <!-- CSS: implied media=all -->
   <!-- CSS concatenated and minified via ant build script-->
-  <link rel="stylesheet" href="assets/css/application.css">
+  <link rel="stylesheet" href="stylesheets/application.css">
   <!-- end CSS-->
-  
-  <!-- head.js fetches js files in parallel -->
-  <script src="assets/js/lib/head.min.js" type="text/javascript" charset="utf-8"></script>
-  
-  <script type="text/javascript" charset="utf-8">
-    App = [];
-    App.models = [];
-    App.views = [];
-    head.js(
-      "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js",
-      "assets/js/lib/underscore.js",
-      "assets/js/lib/backbone.js",
-      "assets/js/lib/raphael-min.js",
-      "assets/js/models/line.js",
-      "assets/js/models/stop.js",
-      "assets/js/models/vehicle.js",
-      "assets/js/views/vehicle.js",
-      "assets/js/views/line.js",
-      "assets/js/app.js"
-    );
-  </script>
-
   <script type="text/template" id="line_template">
     <div class="canvas">
     </div>
   </script>
+    
+  <script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>

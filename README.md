@@ -14,7 +14,7 @@ Navigate to the downloaded folder and run bundler.
 
 Run `foreman start` in the application folder, `foreman` will do the following.
 
-1. Watch and compile `sass` and `scss` on-the-fly.
+1. Watch and compile files<sup>1</sup> on-the-fly.
 
 ## Models
 
@@ -39,3 +39,12 @@ Models extend Backbone.Model if no other information is given
 - Reacts to events in the Vehicle model:
   - change:time: if vehicle is moving, change animation to reflect new time. Otherwise, do nothing?
   - trainLeftStation: starts the vehicle moving towards the current destination.
+
+## Rake tasks
+
+`compile` Compresses assets files<sup>1</sup>. 
+If you want to use the [YUI](http://developer.yahoo.com/yui/compressor/) compressor, pass `ENV=production` on startup.
+
+------------
+
+<sup>1</sup> `sass`, `scss`, `css` and `js` files.
