@@ -1,9 +1,9 @@
 App.views.Vehicle = Backbone.View.extend({
-  initialize: function(shape) {
-    _.bindAll(this, ['render', 'timeDidChange', 'tripDidChange', 'start']);
-    this.model.bind('change:time', 'timeDidChange');
-    this.model.bind('change:trip', 'tripDidChange');
-    this.shape = shape;
+  initialize: function() {
+    _.bindAll(this, ['render', 'timeDidChange', 'tripDidChange', 'start', 'moveTo', 'remove']);
+    this.options.model.bind('change:time', 'timeDidChange');
+    this.options.model.bind('change:trip', 'tripDidChange');
+    this.shape = options.shape;
   },
   render: function() {
     
@@ -27,4 +27,10 @@ App.views.Vehicle = Backbone.View.extend({
     this.shape.stop().animate(this.animation);
     return this;
   },
+  moveTo: function(x, y) {
+    return this.get("shape").stop().attr({cx: x, cy: y});
+  },
+  remove: function() {
+    return this.get("shape").hide();
+  }
 });

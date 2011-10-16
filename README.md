@@ -20,9 +20,13 @@ Run `foreman start` in the application folder, `foreman` will do the following.
 
 Models extend Backbone.Model if no other information is given
 
-### Line
+### Stops
 - Extends: Collection
+- Just a collection of stops
+
+### Line
 - Arguments: line id, colours (foreground, background)
+- Contains a collection of stops
 - Fetches stops from the server using paths like `/lines/:line_id/stops`
 
 ### Vehicle
