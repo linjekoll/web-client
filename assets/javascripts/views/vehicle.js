@@ -1,9 +1,9 @@
 App.views.Vehicle = Backbone.View.extend({
   initialize: function() {
-    _.bindAll(this, ['render', 'timeDidChange', 'tripDidChange', 'start', 'moveTo', 'remove']);
-    this.options.model.bind('change:time', 'timeDidChange');
-    this.options.model.bind('change:trip', 'tripDidChange');
-    this.shape = options.shape;
+    _.bindAll(this);
+    this.model.bind('change:time', this.timeDidChange);
+    this.model.bind('change:trip', this.tripDidChange);
+    this.shape = this.options.shape;
   },
   render: function() {
     
@@ -17,8 +17,10 @@ App.views.Vehicle = Backbone.View.extend({
     }
   },
   tripDidChange: function () {
-    var trip = this.model.get("trip");
-    var animation = Raphael.animation({cx: trip.x, cy: trip.y}, trip.time);
+    console.log("Trip did change!");
+    var destination = this.model.get("destination");
+    var time = this.model.get('time');
+    var animation = Raphael.animation({cx: destination.x, cy: destination.y}, time);
     this.animation = animation;
     this.shape.animate(animation);
     return this;

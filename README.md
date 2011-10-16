@@ -31,6 +31,8 @@ Models extend Backbone.Model if no other information is given
 
 ### Vehicle
 - Arguments: journey id, vehicle type
+- Takes trip information in the following format: `{destX: 123, destY: 123, time: 123}`
+- Trips have a custom setter-method which sets the `this.time` and `this.destination` attributes, otherwise it wouldn't be possible to have separate `change` events for `time` and `destination`
 - Receives updates from the websocket server and triggers events for the view.
 
 ## Views
