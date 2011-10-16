@@ -1,1 +1,1 @@
-compass: compass watch --sass-dir=assets/sass/ --css-dir=assets/css/
+compass: guard
