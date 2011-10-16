@@ -14,4 +14,4 @@ Navigate to the downloaded folder and run bundler.
 
 Run `foreman start` in the application folder, `foreman` will do the following.
 
-1. Watch and compile `sass` and `scss` on-the-fly.
+1. Watch and compile `sass`, `scss`, `css` and `js` files on-the-fly.
