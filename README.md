@@ -27,6 +27,7 @@ Models extend Backbone.Model if no other information is given
 
 ### Vehicle
 - Arguments: journey id, vehicle type
+- Receives updates from the websocket server and triggers events for the view.
 
 ## Views
 
@@ -35,6 +36,6 @@ Models extend Backbone.Model if no other information is given
 - Iterates through the Line collection to find typical travel times and calculates relative pixel distances
 
 ### Vehicle
-- Reacts to changes in the Vehicle model:
-  - time: if vehicle is moving, change animation to reflect new time. Otherwise, do nothing?
-  - coordinates: if vehicle is 
+- Reacts to events in the Vehicle model:
+  - change:time: if vehicle is moving, change animation to reflect new time. Otherwise, do nothing?
+  - trainLeftStation: starts the vehicle moving towards the current destination.

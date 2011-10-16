@@ -22,6 +22,3 @@ javascripts_dir = "assets/js"
 # preferred_syntax = :sass
 # and then run:
 # sass-convert -R --from scss --to sass assets/sass scss && rm -rf sass && mv scss sass
-
-environment = Sprockets::Environment.new
-environment.append_path 'assets/js'
