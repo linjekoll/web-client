@@ -3,24 +3,31 @@ App.views.Line = Backbone.View.extend({
   className: "line",
   initialize: function() {
     // Set id of element to reflect id of line
-    $(this.el).attr({id: this.collection.id});
+    $(this.el).attr({id: this.model.id});
     
     _.bindAll(this, 'render');
-    this.collection.bind('change', this.render);
+    this.model.bind('change', this.render);
     this.template = _.template($("#line-template").html());
   },
   render: function() {
-    var rendered = this.template(this.collection.toJSON());
+    // Render HTML
+    var rendered = this.template(this.model.toJSON());
     $(this.el).html(rendered);
     $("#outer").append(this.el);
+    
+    // Prepare Raphael
     this.paper = this.paper || Raphael(this.$(".canvas").get(0));
     var width = $(this.el).width();
-    console.log(width);
     this.path = this.paper.path("M 10 20" + "L " + (width - 10) + " 20");
+    
+    // Draw stops
+    this.model.stops.forEach(function(stop) {
+      
+    });
     return this;
   },
   getTotalCalculatedTime: function () {
-    return this.totalTime = this.collection.reduce(function(memo,stop) {
+    return this.totalTime = this.model.stops.reduce(function(memo,stop) {
       return memo + stop.time;
     }, 0);
   }

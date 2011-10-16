@@ -1,9 +1,6 @@
-App.models.Line = Backbone.Collection.extend({
-  initialize: function(params) {
-    this.id = params.id;
-  },
-  model: App.models.Stop,
-  url: function () {
-    return "/lines/" + this.id + "/" + "stops";
+App.models.Line = Backbone.Model.extend({
+  initialize: function() {
+    this.stops = new App.models.Stops({id: this.id});
+    this.stops.fetch();
   }
 });
