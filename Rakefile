@@ -26,7 +26,7 @@ task :compile do
     env.logger = logger
   end
   
-  unless ENV["ENV"] == "production"
+  if ENV["ENV"] == "production"
     sprockets.js_compressor = js_compressor
     sprockets.css_compressor = css_compressor
   end
