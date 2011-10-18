@@ -41,6 +41,10 @@ Models extend Backbone.Model if no other information is given
 - Probably contains a canvas for Raphael and info like end stations and line name
 - Iterates through the Line collection to find typical travel times and calculates relative pixel distances
 
+### Stop
+- Draws itself as a dot and a text.
+- Params: needs a shape and a reference to its paper/canvas
+
 ### Vehicle
 - Reacts to events in the Vehicle model:
   - change:time: if vehicle is moving, change animation to reflect new time. Otherwise, do nothing?

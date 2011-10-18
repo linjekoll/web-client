@@ -5,9 +5,12 @@ App.views.Line = Backbone.View.extend({
     // Set id of element to reflect id of line
     $(this.el).attr({id: this.model.id});
     
+    this.stopViews = [];
+    
     _.bindAll(this, 'render');
     this.model.bind('change', this.render);
     this.template = _.template($("#line-template").html());
+    this.render();
   },
   render: function() {
     // Render HTML
@@ -21,14 +24,10 @@ App.views.Line = Backbone.View.extend({
     this.path = this.paper.path("M 10 20" + "L " + (width - 10) + " 20");
     
     // Draw stops
-    this.model.stops.forEach(function(stop) {
+    var totalTime = this.model.get("totalTime");
+    this.model.get("stops").forEach(function(stop) {
       
     });
     return this;
-  },
-  getTotalCalculatedTime: function () {
-    return this.totalTime = this.model.stops.reduce(function(memo,stop) {
-      return memo + stop.time;
-    }, 0);
   }
 });
