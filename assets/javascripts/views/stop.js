@@ -2,21 +2,23 @@ App.views.Stop = Backbone.View.extend({
     initialize: function(options) {
         this.paper = options.paper;
         this.shape = options.shape;
-
+        this.x = options.x;
+        this.y = options.y;
+        
         _.bindAll(this);
+        this.render();
     },
     
     render: function() {
-        var x = this.model.get("x");
-        var y = this.model.get("y");
         
         // If there is no shape, we create it, otherwise we move it to the correct position
         if (!this.shape) {
-            this.shape = this.paper.circle(x, y, 5);
+            this.shape = this.paper.circle(this.x, this.y, 5).attr({fill: "black"});
         } else {
             this.shape.attr({
-                x: x,
-                y: y
+                x: this.x,
+                y: this.y,
+                fill: "black"
             });
         }
         
@@ -25,15 +27,17 @@ App.views.Stop = Backbone.View.extend({
             this.text.remove();
         }
         
-        var textYCoord = y;
-        var textXCoord = x + 10;
+        var textYCoord = this.y;
+        var textXCoord = this.x + 10;
+        var x = this.x;
+        var name = this.model.get("name");
         this.text = 
           this.paper
-          .text(textXCoord, textYCoord, this.model.get("name"))
+          .text(textXCoord, textYCoord, name)
           .attr({
             "font-family": "Myriad Pro"
           , "text-anchor": "start"
-          , "font-size": 20
+          , "font-size": 16
           })
           .rotate( - 60, x, textYCoord);
     },
