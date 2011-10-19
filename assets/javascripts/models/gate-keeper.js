@@ -15,11 +15,40 @@ App.models.GateKepper = Backbone.Model.extend({
     App.globals.socket.bind("error", this.error);
   },
   
-  /* Trigged by the socket sending data */
+  /* 
+    Trigged by the socket sending data
+    @data Hash An update object.
+    It (@data) should look something like this;
+    {
+      alert_message: ""
+      arrival_time: "1319031890"
+      event: "did_leave_station"
+      journey_id: "30"
+      line_id: "4"
+      next_station: "898345"
+      previous_station: "8998235"
+      provider_id: "1"
+      station_id: "00012130"
+    }
+  */
   update: function(data){
     console.debug("NEW DATA", data);
   },
   
+  /*
+    This method is called when the client (you)
+    pushed invalid data to the websocket server.
+    
+    @data Hash An error from the websocket server.
+    The error should something like this:
+    {
+      message: "Invalid event.",
+      ingoing: {}
+    }
+    
+    The 'ingoing' key should contain data 
+    that was pushed by you to the server.
+  */
   error: function(data){
     console.debug("Error", data);
   }
