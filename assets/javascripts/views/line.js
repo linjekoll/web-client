@@ -30,7 +30,6 @@ App.views.Line = Backbone.View.extend({
     _.bindAll(this);
 
     $.get("/static/line.template.html", function(data) {
-      // $("#line-template").html()
       self.template = _.template(data);
       self.render();
     });
