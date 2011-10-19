@@ -1,5 +1,6 @@
 //= require ./init
 
+//= require ./lib/logger
 //= require ./lib/jquery
 //= require ./lib/underscore
 //= require ./lib/backbone

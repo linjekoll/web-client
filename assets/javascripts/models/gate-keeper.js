@@ -32,7 +32,7 @@ App.models.GateKepper = Backbone.Model.extend({
     }
   */
   update: function(data){
-    console.debug("NEW DATA", data);
+    App.globals.logger("Websocket update.trip event", data);
   },
   
   /*
@@ -50,6 +50,6 @@ App.models.GateKepper = Backbone.Model.extend({
     that was pushed by you to the server.
   */
   error: function(data){
-    console.debug("Error", data);
+    App.globals.logger("Websocket error event", data);
   }
 });
