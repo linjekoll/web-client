@@ -57,12 +57,11 @@ App.models.Line = Backbone.Model.extend({
       var next = stops.get(message.next_station);
       
       /* 
-       *  If no vehicle was found, we should create it, 
+       *  If no vehicle was found, we should create it
        */
       if (!vehicle) {
         var vehicle = new App.models.Vehicle();
-        var shape = this.paper.circle(previous.get("pixelX"), previous.get("pixelY"));
-        shape.attr({fill: "black"});
+        var shape = this.getShape({x: previous.get("pixelX"),y: previous.get("pixelY")});
         var vehicleView = new App.views.Vehicle({model: vehicle, shape: shape});
       }
       
@@ -72,11 +71,26 @@ App.models.Line = Backbone.Model.extend({
       return this;
     },
     
-    update: function() {
+    /*
+     *  If vehicle is present, set a new trip. Otherwise, create a new vehicle and .
+     */
+    update: function(message) {
+      var stops = this.get("stops");
+      var vehicle = vehicles.get(message.journey_id);
+      var next = stops.get(message.next_station);
       
+      if (!vehicle) {
+        // TODO: place vehicle at correct position
+      } else {
+        vehicle.setTrip({time: message.time, destination: {x: next.get("pixelX"), y: next.get("pixelY")}});
+      }
     },
     
     alert: function() {
       
+    }
+    
+    getShape: function(options) {
+      return this.paper.circle(options.x, options.y).attr({fill: "black"});
     }
 });
