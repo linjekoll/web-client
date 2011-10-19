@@ -1,4 +1,8 @@
 App.views.Vehicle = Backbone.View.extend({
+  
+  /*
+   *  Parameters: shape - a Raphael shape that represents the vehicle
+   */ 
   initialize: function() {
     _.bindAll(this);
     
@@ -22,14 +26,10 @@ App.views.Vehicle = Backbone.View.extend({
     }).repeat(4999);
   },
   
-  render: function() {
-
-  },
-
   timeDidChange: function() {
     App.globals.logger("VehicleView#timeDidChange was triggered.");
     if (this.movementAnimation) {
-      this.movementAnimation.ms = this.model.get("time");
+      this.movementAnimation.ms = this.model.get("time")*1000;
       return this.start();
     } else {
       return this;
@@ -39,7 +39,7 @@ App.views.Vehicle = Backbone.View.extend({
   tripDidChange: function() {
     App.globals.logger("VehicleView#tripDidChange was triggered.");
     var destination = this.model.get("destination");
-    var time = this.model.get('time');
+    var time = this.model.get('time')*1000;
     var movementAnimation = Raphael.animation({
       cx: destination.x,
       cy: destination.y
@@ -47,9 +47,10 @@ App.views.Vehicle = Backbone.View.extend({
     time);
     this.movementAnimation = movementAnimation;
     this.shape.stop().animate(movementAnimation).animate(this.pulseAnimation);
+    App.globals.logger("VehicleView: animation: ", movementAnimation);
     return this;
   },
-
+  
   start: function() {
     this.shape.stop().animate(this.movementAnimation).animate(this.pulseAnimation);
     return this;

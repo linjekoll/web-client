@@ -1,3 +1,7 @@
+/*
+  Example usage: lineView = new App.views.Line({model: line});
+*/
+
 App.views.Line = Backbone.View.extend({
   tag: "div",
   className: "line",
@@ -165,6 +169,11 @@ App.views.Line = Backbone.View.extend({
         y: previous.get("pixelY")
       }
     });
+    
+    App.globals.logger("vehicle moves to", {coordinates: {
+        x: previous.get("pixelX"),
+        y: previous.get("pixelY")
+      }})
 
     vehicle.setTrip({
       time: message.time,
@@ -173,13 +182,18 @@ App.views.Line = Backbone.View.extend({
         y: next.get("pixelY")
       }
     });
+    
+    App.globals.logger("vehicle starts towards", {coordinates: {
+        x: next.get("pixelX"),
+        y: next.get("pixelY")
+      }})
 
     return this;
   },
 
   getShape: function(options) {
-    return this.paper.circle(options.x, options.y).attr({
-      fill: "black"
+    return this.paper.circle(options.x, options.y, 5).attr({
+      fill: "red"
     });
   }
 });
