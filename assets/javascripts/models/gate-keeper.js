@@ -32,12 +32,17 @@ App.models.GateKepper = Backbone.Model.extend({
     }
   */
   update: function(data){
+    var line = window.lines.get(data.line_id)
+    if(line) {
+      line.update(data);
+    }
+    
     App.globals.logger("Websocket update.trip event", data);
   },
   
   /*
-    This method is called when the client (you)
-    pushed invalid data to the websocket server.
+    Called when the client (you) pushed invalid 
+    data to the websocket server.
     
     @data Hash An error from the websocket server.
     The error should something like this:

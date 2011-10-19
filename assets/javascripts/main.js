@@ -4,30 +4,21 @@
 */
 App.globals.socket = new DispatchSocket("ws://46.16.232.244:3333");
 
-window.v = function() {
-  window.vm = new App.models.Vehicle();
-  window.vv = new App.views.Vehicle({model: window.vm, shape: lineView.paper.circle(10,10,10)});
-};
+/* Creating a container for all lines */
+window.lines = new App.models.Lines();
 
-window.vstart = function() {
-  window.vm.setTrip({time: 10000, destination: {x: 900, y:10}});
-};
-
-window.vnewtime = function (time) {
-  window.vm.set({time: time});
-};
-
-window.stop = function () {
-  window.stop2 = new App.models.Stop({x: 100, y:100, name: "Mölndal"});
-  window.stop2View = new App.views.Stop({model: stop2, paper: window.lineView.paper});
-  window.stop2View.render();
-}
-
+//= require "lib/funfunfun"
 $(function() {
   $("#4").click(function() {
-      window.line = new App.models.Line({id: 4});
-      window.lineView = new App.views.Line({model: line});
+    App.globals.socket.send("subscribe.trip.update", [{
+      provider_id: 1,
+      line_id: "4"
+    }])
   });
+  
+  lines.add(new App.models.Line({
+    id: 4
+  }));
 });
 
 App.globals.gateKeeper = new App.models.GateKepper();
