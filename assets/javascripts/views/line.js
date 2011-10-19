@@ -17,8 +17,7 @@ App.views.Line = Backbone.View.extend({
   },
 
   modelDidFetch: function() {
-    console.log("Reset!");
-    // Set id of element to reflect id of line
+    var self = this;
     $(this.el).attr({
       id: this.model.id
     });
@@ -32,8 +31,8 @@ App.views.Line = Backbone.View.extend({
 
     $.get("/static/line.template.html", function(data) {
       // $("#line-template").html()
-      this.template = _.template(data);
-      this.render();
+      self.template = _.template(data);
+      self.render();
     });
   },
 
@@ -135,6 +134,11 @@ App.views.Line = Backbone.View.extend({
     /* 
     *  If no vehicle was found, we should create it
     */
+    
+    if(!this.paper){
+      App.globals.logger("this.paper was not set"); return;
+    }
+    
     if (!vehicle) {
       var vehicle = new App.models.Vehicle({
         pixelX: previous.get("pixelX"),
