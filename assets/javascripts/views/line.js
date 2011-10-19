@@ -2,6 +2,12 @@ App.views.Line = Backbone.View.extend({
   tag: "div",
   className: "line",
   initialize: function() {
+    this.model.bind('didFetch', this.modelDidFetch, this);
+    _.bindAll(this);
+  },
+  
+  modelDidFetch: function() {
+    console.log("Reset!");
     // Set id of element to reflect id of line
     $(this.el).attr({id: this.model.id});
     
@@ -12,13 +18,14 @@ App.views.Line = Backbone.View.extend({
     
     _.bindAll(this);
     
-    this.model.bind('change:totalTime', this.render);
     this.template = _.template($("#line-template").html());
     this.render();
   },
+  
   render: function() {
     console.log("Render!");
     // Render HTML
+    console.log(this.model.toJSON());
     var rendered = this.template(this.model.toJSON());
     $(this.el).html(rendered);
     $("#outer").append(this.el);
