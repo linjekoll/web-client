@@ -38,8 +38,14 @@ Models extend Backbone.Model if no other information is given
 ## Views
 
 ### Line
-- Probably contains a canvas for Raphael and info like end stations and line name
+- Contains a canvas for Raphael and info like end stations and line name
 - Iterates through the Line collection to find typical travel times and calculates relative pixel distances
+- NEEDS:
+  - In the line model:
+    - id, name, totalTime, stops
+  - In the stop model:
+    - time
+- Currently renders it self when, and only when, the stops collection in the line model fires the `reset` event.
 
 ### Stop
 - Draws itself as a dot and a text.

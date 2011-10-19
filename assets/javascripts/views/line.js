@@ -1,3 +1,7 @@
+/*
+  Example usage: lineView = new App.views.Line({model: line});
+*/
+
 App.views.Line = Backbone.View.extend({
   tag: "div",
   className: "line",
