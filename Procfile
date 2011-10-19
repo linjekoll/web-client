@@ -1,1 +1,1 @@
-compass: guard
+guard: guard
