@@ -16,8 +16,18 @@ $(function() {
     providerId = $self.data("provider-id");
     lineId     = $self.data("line-id");
     
-    lines.get(lineId).populateStops();
+    var line = lines.get(lineId);
     
+    line.populateStops();
+    
+    var lineView = new App.views.Line({
+      model: line
+    });
+    
+    line.set({
+      view: lineView
+    })
+        
     App.globals.logger("Subscribing to line id " + lineId + " with provider id " + providerId);
   });
   

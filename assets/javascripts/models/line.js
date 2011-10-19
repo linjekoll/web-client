@@ -1,5 +1,6 @@
 App.models.Line = Backbone.Model.extend({
   initialize: function() {
+    this.vehicles = new App.models.Vehicles();
     _.bindAll(this);
   },
 
@@ -71,46 +72,12 @@ App.models.Line = Backbone.Model.extend({
   */
   setMessage: function(json) {
     if (json.event === 'did_leave_station') {
-      this.didLeaveStation(json);
+      this.trigger("didLeaveStation", json);
     } else if (json.event === 'update') {
       this.update(json);
     } else if (json.event === 'alert') {
       this.alert(json);
     }
-  },
-
-  didLeaveStation: function(message) {
-    var stops = this.get("stops");
-    var vehicle = vehicles.get(message.journey_id);
-    var paper = this.paper;
-    var previous = stops.get(message.previous_station);
-    var next = stops.get(message.next_station);
-
-    /* 
-       *  If no vehicle was found, we should create it, 
-       */
-    if (!vehicle) {
-      var vehicle = new App.models.Vehicle();
-      var shape = this.paper.circle(previous.get("pixelX"), previous.get("pixelY"));
-      shape.attr({
-        fill: "black"
-      });
-      var vehicleView = new App.views.Vehicle({
-        model: vehicle,
-        shape: shape
-      });
-    }
-
-    vehicle.moveTo(previous.get("pixelX"), previous.get("pixelY"));
-    vehicle.setTrip({
-      time: message.time,
-      destination: {
-        x: next.get("pixelX"),
-        y: next.get("pixelY")
-      }
-    });
-
-    return this;
   },
 
   /* 
@@ -122,55 +89,12 @@ App.models.Line = Backbone.Model.extend({
     App.globals.logger("alert event triggered.");
   },
 
-  /* 
-    @data Hash websocket data 
-    Take a look at the Line#update
-    for more information.
-  */
-  didLeaveStation: function(message) {
-    App.globals.logger("didLeaveStation event triggered.");
-    App.globals.logger(message);
-    return;
-
-    var stops = this.get("stops");
-    var vehicle = vehicles.get(message.journey_id);
-    var paper = this.paper;
-    var previous = stops.get(message.previous_station);
-    var next = stops.get(message.next_station);
-
-    /* 
-       *  If no vehicle was found, we should create it
-       */
-    if (!vehicle) {
-      var vehicle = new App.models.Vehicle();
-      var shape = this.getShape({
-        x: previous.get("pixelX"),
-        y: previous.get("pixelY")
-      });
-      var vehicleView = new App.views.Vehicle({
-        model: vehicle,
-        shape: shape
-      });
-    }
-
-    vehicle.moveTo(previous.get("pixelX"), previous.get("pixelY"));
-    vehicle.setTrip({
-      time: message.time,
-      destination: {
-        x: next.get("pixelX"),
-        y: next.get("pixelY")
-      }
-    });
-
-    return this;
-  },
-
   /*
      *  If vehicle is present, set a new trip. Otherwise, create a new vehicle and .
      */
   update: function(message) {
     var stops = this.get("stops");
-    var vehicle = vehicles.get(message.journey_id);
+    var vehicle = this.vehicles.get(message.journey_id);
     var next = stops.get(message.next_station);
 
     if (!vehicle) {
@@ -184,11 +108,5 @@ App.models.Line = Backbone.Model.extend({
         }
       });
     }
-  },
-
-  getShape: function(options) {
-    return this.paper.circle(options.x, options.y).attr({
-      fill: "black"
-    });
   }
 });

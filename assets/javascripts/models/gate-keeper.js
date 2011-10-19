@@ -35,8 +35,8 @@ App.models.GateKepper = Backbone.Model.extend({
     var line = window.lines.get(data.line_id)
     if(line) {
       var today = new Date();
-      data.arrival_time = parseInt(data.arrival_time, 10) - (today.getTime() / 1000);
-      line.update(data);
+      data.time = parseInt(data.arrival_time, 10) - (today.getTime() / 1000);
+      line.setMessage(data);
     }
     
     App.globals.logger("Websocket update.trip event", data);
