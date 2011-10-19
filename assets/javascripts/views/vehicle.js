@@ -33,9 +33,11 @@ App.views.Vehicle = Backbone.View.extend({
     return this;
   },
   moveTo: function(x, y) {
-    return this.get("shape").stop().attr({cx: x, cy: y});
+    this.shape.stop().attr({cx: x, cy: y});
+    return this;
   },
   remove: function() {
-    return this.get("shape").hide();
+    this.shape.hide();
+    return this;
   }
 });

@@ -20,7 +20,8 @@ window.stop = function () {
 }
 
 $(function() {
-  window.line = new App.models.Line({name: "4", id: 4});
-  window.lineView = new App.views.Line({model: line});
-  $("#outer").append(lineView.render().el);
+  $("#4").click(function() {
+      window.line = new App.models.Line({id: 4});
+      window.lineView = new App.views.Line({model: line});
+  });
 });

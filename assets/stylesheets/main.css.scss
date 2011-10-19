@@ -1,10 +1,6 @@
 @import "normalize";
 @import "compass/css3";
 
-input[type="text"] {
-  @include single-box-shadow(#000, 0, 0, 10px, 10px, false);
-}
-
 body {
   font-family: 'Helvetica Neue', 'Lucida Grande', Arial;
   width: 100%;
@@ -59,7 +55,8 @@ a {
 #container,
 #search_bar,
 #lines,
-.line
+.line,
+.glowbox
 {
   width: 70%;
   background-color: #E2E8E2;
