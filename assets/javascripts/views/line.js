@@ -166,6 +166,11 @@ App.views.Line = Backbone.View.extend({
         y: previous.get("pixelY")
       }
     });
+    
+    App.globals.logger("vehicle moves to", {coordinates: {
+        x: previous.get("pixelX"),
+        y: previous.get("pixelY")
+      }})
 
     vehicle.setTrip({
       time: message.time,
@@ -174,6 +179,11 @@ App.views.Line = Backbone.View.extend({
         y: next.get("pixelY")
       }
     });
+    
+    App.globals.logger("vehicle starts towards", {coordinates: {
+        x: next.get("pixelX"),
+        y: next.get("pixelY")
+      }})
 
     return this;
   },
