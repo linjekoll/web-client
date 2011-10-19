@@ -9,16 +9,19 @@ window.lines = new App.models.Lines();
 
 //= require "lib/funfunfun"
 $(function() {
-  $("#4").click(function() {
-    App.globals.socket.send("subscribe.trip.update", [{
-      provider_id: 1,
-      line_id: "4"
-    }])
+  $("#lines li").click(function() {
+    var $self, providerId, lineId;
+    
+    $self      = $(this);
+    providerId = $self.data("provider-id");
+    lineId     = $self.data("line-id");
+    
+    lines.get(lineId).selfLoaded();
+    
+    App.globals.logger("Subscribing to line id " + lineId + " with provider id " + providerId);
   });
   
-  lines.add(new App.models.Line({
-    id: 4
-  }));
+  lines.fetch();
 });
 
 App.globals.gateKeeper = new App.models.GateKepper();
