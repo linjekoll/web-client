@@ -47,11 +47,9 @@ App.models.Line = Backbone.Model.extend({
   calculateTotalTime: function() {
     var totalTime = this.get("stops").reduce(function(memo, stop) {
       return stop.get("time") + memo;
-    },
-    0);
-    this.set({
-      totalTime: totalTime
-    });
+    }, 0);
+    
+    this.set({ totalTime: totalTime });
     return this;
   },
 

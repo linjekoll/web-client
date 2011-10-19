@@ -1,11 +1,13 @@
 App.views.Vehicle = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this);
+    
     this.model.bind('change:time', this.timeDidChange);
     this.model.bind('change:trip', this.tripDidChange);
     this.model.bind("change:coordinates", this.moveTo);
 
     this.shape = this.options.shape;
+    
     this.shape.attr({
       fill: "#FFFFFF"
     });
@@ -19,6 +21,7 @@ App.views.Vehicle = Backbone.View.extend({
       })
     }).repeat(4999);
   },
+  
   render: function() {
 
   },

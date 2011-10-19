@@ -31,14 +31,13 @@ App.views.Line = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("Render!");
-    // Render HTML
-    console.log(this.model.toJSON());
+    App.globals.logger("LineView was triggered.");
+    
     var rendered = this.template(this.model.toJSON());
     $(this.el).html(rendered);
     $("#outer").append(this.el);
 
-    // Prepare Raphael
+    /* Initializes raphael.js */
     this.paper = Raphael(this.$(".canvas").get(0));
     this.width = $(this.el).width();
     this.path = this.paper.path("M " + this.xOffset + " " + this.yOffset + "L " + (this.width - this.xOffset) + " " + this.yOffset);
@@ -55,16 +54,27 @@ App.views.Line = Backbone.View.extend({
   },
 
   drawStops: function() {
-    var totalTime = this.model.get("totalTime");
+    /*
+      @totalTime Integer The time it takes to move from one end to the other.
+      @cumulativeTimes Array ....
+      @stops Array A list of stops, each stop is a backbone model object.
+      @totalWidth Integer With of the canvas. This is uniqe for each user.
+      @stopViews Array An array of stop view. Each view is a backbone view object.
+      @paper Raphael A raphael canvas object.
+      @xOffset Integer Space in pixles between line and canvas.
+      @yOffset Integer Space in pixles between line and canvas.
+    */
+    
+    var totalTime       = this.model.get("totalTime");
     var cumulativeTimes = [];
-    var stops = this.model.get("stops");
-    var totalWidth = this.width - (2 * this.xOffset);
-    var stopViews = this.stopViews;
-    var paper = this.paper;
-    var xOffset = this.xOffset;
-    var yOffset = this.yOffset;
+    var stops           = this.model.get("stops");
+    var totalWidth      = this.width - (2 * this.xOffset);
+    var stopViews       = this.stopViews;
+    var paper           = this.paper;
+    var xOffset         = this.xOffset;
+    var yOffset         = this.yOffset;
 
-    // Make an array of hashes {stop: aStop, cumulativeTime: timeFromFirstStationToThisStation}
+    /* Make an array of hashes {stop: aStop, cumulativeTime: timeFromFirstStationToThisStation} */
     stops.reduce(function(cumulative, stop) {
       cumulativeTimes.push({
         stop: stop,
@@ -74,7 +84,7 @@ App.views.Line = Backbone.View.extend({
     },
     0);
 
-    // Make an array of hashes {stop: aStop, xCoord, theXCoordinateOfTheStop}
+    /* Make an array of hashes {stop: aStop, xCoord, theXCoordinateOfTheStop} */
     var stopsAndCoords = _.map(cumulativeTimes, function(stopAndTime) {
       var factor = stopAndTime.cumulativeTime / totalTime;
       var xCoord = Math.round(factor * totalWidth) + xOffset;
@@ -84,7 +94,7 @@ App.views.Line = Backbone.View.extend({
       };
     });
 
-    // Create the views, save pixel coordinates in the model
+    /* Create the views, save pixel coordinates in the model */
     _.each(stopsAndCoords, function(stopAndCoord) {
       stopAndCoord.stop.set({
         pixelX: stopAndCoord.xCoord,
