@@ -1,4 +1,8 @@
-
+/* 
+  Ower own Websocket class.
+  Take a look the lib/dispatch.js file for more info
+*/
+App.globals.socket = new DispatchSocket("ws://46.16.232.244:3333");
 
 window.v = function() {
   window.vm = new App.models.Vehicle();
@@ -25,3 +29,5 @@ $(function() {
       window.lineView = new App.views.Line({model: line});
   });
 });
+
+App.globals.gateKeeper = new App.models.GateKepper();

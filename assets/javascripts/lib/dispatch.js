@@ -20,19 +20,28 @@ var DispatchSocket = function(url) {
 
   var callbacks = {};
 
-  /* We should be able to bind events to the websocket connection */
-  this.bind = function(event_name, callback) {
-    callbacks[event_name] = callbacks[event_name] || [];
-    callbacks[event_name].push(callback);
+  /* 
+    We should be able to bind events to the websocket connection 
+    @eventName String Event to bind to
+    @callback Function Callback to be called when @eventName is triggered.
+  */
+  this.bind = function(eventName, callback) {
+    callbacks[eventName] = callbacks[eventName] || [];
+    callbacks[eventName].push(callback);
     return this;
   };
 
-  /* Makes it possible to push data to an event */
-  this.send = function(event_name, event_data) {
+  /* 
+    Makes it possible to push data to an event 
+    @eventName String What event should we trigger?
+    @eventData String What data should we push to server?
+  */
+  this.send = function(eventName, eventData) {
     var payload = JSON.stringify({
-      event: event_name,
-      data: event_data
+      event: eventName,
+      data: eventData
     });
+    
     conn.send(payload);
     return this;
   };
@@ -40,16 +49,16 @@ var DispatchSocket = function(url) {
   /* Private methods */
   conn.onmessage = function(evt) {
     var json = JSON.parse(evt.data)
-    dispatch(json.event, json.data)
+    dispatch(json.event, json.data);
   };
 
   conn.onclose = function() {
-    dispatch("close", null)
-  }
+    dispatch("close", null);
+  };
 
   conn.onopen = function() {
-    dispatch("open", null)
-  }
+    dispatch("open", null);
+  };
 
   var dispatch = function(event_name, message) {
     var chain = callbacks[event_name];
@@ -57,7 +66,7 @@ var DispatchSocket = function(url) {
     /* No callbacks for this event */
     if (typeof chain == "undefined") return;
     for (var i = 0; i < chain.length; i++) {
-      chain[i](message)
+      chain[i](message);
     }
-  }
+  };
 };
