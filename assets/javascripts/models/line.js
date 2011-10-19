@@ -3,7 +3,12 @@ App.models.Line = Backbone.Model.extend({
     _.bindAll(this);
   },
 
-  selfLoaded: function() {
+  urlRoot: "/lines",
+  
+  /*
+    Downloads and populates the stops attribute
+  */
+  populateStops: function() {
     var provider, id, stops;
     App.globals.logger("Running method Line#selfLoaded.");
         
@@ -21,8 +26,9 @@ App.models.Line = Backbone.Model.extend({
     stops.fetch();
   },
 
-  urlRoot: "/lines",
-
+  /*
+    Fires when all stops are loaded
+  */
   stopsLoaded: function() {
     App.globals.logger("Running method Line#stopsLoaded, this should trigger socket connection");
     
@@ -30,6 +36,7 @@ App.models.Line = Backbone.Model.extend({
     this.calculateTotalTime();
     this.trigger("didFetch");
     
+    /* Subscribing to websocket channel */
     App.globals.socket.send("subscribe.trip.update", [{
       provider_id: this.get("provider"),
       line_id: this.get("id")
@@ -135,16 +142,6 @@ App.models.Line = Backbone.Model.extend({
   didLeaveStation: function(data) {
     App.globals.logger("didLeaveStation event triggered.");
     
-    if(this.isStopsInitialized){
-      
-    } else {
-    }
-  },
-  
-  /*
-    @return Boolean Does this station contain any stops?
-  */
-  isStopsInitialized: function(){
-    !! this.get("stopsInitialized");
-  },
+    App.globals.logger(data);
+  }  
 });
