@@ -3,5 +3,5 @@ App.models.Vehicle = Backbone.Model.extend({
     this.set({time: trip.time, destination: trip.destination}, {silent: true});
     this.trigger('change:trip');
     return this;
-  },
+  }
 });

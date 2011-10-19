@@ -1,27 +1,37 @@
+/* 
+  Ower own Websocket class.
+  Take a look the lib/dispatch.js file for more info
+*/
+App.globals.socket = new DispatchSocket("ws://46.16.232.244:3333");
 
+/* Creating a container for all lines */
+window.lines = new App.models.Lines();
 
-window.v = function() {
-  window.vm = new App.models.Vehicle();
-  window.vv = new App.views.Vehicle({model: window.vm, shape: lineView.paper.circle(10,10,10)});
-};
-
-window.vstart = function() {
-  window.vm.setTrip({time: 10000, destination: {x: 900, y:10}});
-};
-
-window.vnewtime = function (time) {
-  window.vm.set({time: time});
-};
-
-window.stop = function () {
-  window.stop2 = new App.models.Stop({x: 100, y:100, name: "Mölndal"});
-  window.stop2View = new App.views.Stop({model: stop2, paper: window.lineView.paper});
-  window.stop2View.render();
-}
-
+//= require "lib/funfunfun"
 $(function() {
-  $("#4").click(function() {
-      window.line = new App.models.Line({id: 4});
-      window.lineView = new App.views.Line({model: line});
+  $("#lines li").click(function() {
+    var $self, providerId, lineId;
+    
+    $self      = $(this);
+    providerId = $self.data("provider-id");
+    lineId     = $self.data("line-id");
+    
+    var line = lines.get(lineId);
+    
+    line.populateStops();
+    
+    var lineView = new App.views.Line({
+      model: line
+    });
+    
+    line.set({
+      view: lineView
+    })
+        
+    App.globals.logger("Subscribing to line id " + lineId + " with provider id " + providerId);
   });
+  
+  lines.fetch();
 });
+
+App.globals.gateKeeper = new App.models.GateKepper();
