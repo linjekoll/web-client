@@ -179,8 +179,8 @@ App.views.Line = Backbone.View.extend({
   },
 
   getShape: function(options) {
-    return this.paper.circle(options.x, options.y).attr({
-      fill: "black"
+    return this.paper.circle(options.x, options.y, 5).attr({
+      fill: "red"
     });
   }
 });
