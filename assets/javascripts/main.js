@@ -9,6 +9,10 @@ window.lines = new App.models.Lines();
 
 //= require "lib/funfunfun"
 $(function() {
+  $.get("/static/line.template.html", function(data) {
+    $("#line-template").html(data);
+  });
+  
   $("#lines li").click(function() {
     var $self, providerId, lineId;
     

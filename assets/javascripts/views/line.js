@@ -17,7 +17,6 @@ App.views.Line = Backbone.View.extend({
   },
 
   modelDidFetch: function() {
-    var self = this;
     $(this.el).attr({
       id: this.model.id
     });
@@ -28,11 +27,9 @@ App.views.Line = Backbone.View.extend({
     this.stopViews = [];
 
     _.bindAll(this);
-
-    $.get("/static/line.template.html", function(data) {
-      self.template = _.template(data);
-      self.render();
-    });
+    
+    this.template = _.template($("#line-template").html());
+    this.render();
   },
 
   render: function() {
