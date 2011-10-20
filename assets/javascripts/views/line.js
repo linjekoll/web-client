@@ -27,14 +27,14 @@ App.views.Line = Backbone.View.extend({
     this.stopViews = [];
 
     _.bindAll(this);
-    
+
     this.template = _.template($("#line-template").html());
     this.render();
   },
 
   render: function() {
     App.globals.logger("LineView was triggered.");
-    
+
     var rendered = this.template(this.model.toJSON());
     $(this.el).html(rendered);
     $("#outer").append(this.el);
@@ -66,15 +66,15 @@ App.views.Line = Backbone.View.extend({
       @xOffset Integer Space in pixles between line and canvas.
       @yOffset Integer Space in pixles between line and canvas.
     */
-    
-    var totalTime       = this.model.get("totalTime");
+
+    var totalTime = this.model.get("totalTime");
     var cumulativeTimes = [];
-    var stops           = this.model.get("stops");
-    var totalWidth      = this.width - (2 * this.xOffset);
-    var stopViews       = this.stopViews;
-    var paper           = this.paper;
-    var xOffset         = this.xOffset;
-    var yOffset         = this.yOffset;
+    var stops = this.model.get("stops");
+    var totalWidth = this.width - (2 * this.xOffset);
+    var stopViews = this.stopViews;
+    var paper = this.paper;
+    var xOffset = this.xOffset;
+    var yOffset = this.yOffset;
 
     /* Make an array of hashes {stop: aStop, cumulativeTime: timeFromFirstStationToThisStation} */
     stops.reduce(function(cumulative, stop) {
@@ -127,20 +127,15 @@ App.views.Line = Backbone.View.extend({
     var previous = stops.get(message.previous_station);
     var next = stops.get(message.next_station);
 
-    /* 
-    *  If no vehicle was found, we should create it
-    */
-    
-    if(!this.paper){
-      App.globals.logger("this.paper was not set"); return;
-    }
-    
+    /* If no vehicle was found, we should create it */
     if (!vehicle) {
       var vehicle = new App.models.Vehicle({
         pixelX: previous.get("pixelX"),
         pixelY: previous.get("pixelY"),
         id: message.journey_id
       });
+
+      this.model.vehicles.add(vehicle);
 
       var shape = this.getShape({
         x: previous.get("pixelX"),
@@ -170,11 +165,13 @@ App.views.Line = Backbone.View.extend({
         y: previous.get("pixelY")
       }
     });
-    
-    App.globals.logger("vehicle moves to", {coordinates: {
+
+    App.globals.logger("vehicle moves to", {
+      coordinates: {
         x: previous.get("pixelX"),
         y: previous.get("pixelY")
-      }})
+      }
+    })
 
     vehicle.setTrip({
       time: message.time,
@@ -183,11 +180,13 @@ App.views.Line = Backbone.View.extend({
         y: next.get("pixelY")
       }
     });
-    
-    App.globals.logger("vehicle starts towards", {coordinates: {
+
+    App.globals.logger("vehicle starts towards", {
+      coordinates: {
         x: next.get("pixelX"),
         y: next.get("pixelY")
-      }})
+      }
+    })
 
     return this;
   },
