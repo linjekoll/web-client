@@ -18,6 +18,10 @@ a {
   }
 }
 
+#outer {
+  padding-top: 6em;
+}
+
 #upper_nav {
   position: absolute;
   left: 0px;
@@ -52,6 +56,20 @@ a {
   }
 }
 
+.flash {
+  @include border-radius(4px, 4px);
+  border: 3px solid;
+  border-left: 3px solid #00C43B;
+  border-right: 3px solid #00AA34;
+  border-top: 3px solid #00DB43;
+  border-bottom: 3px solid #009C30;
+  background-color: #E7E7E7;
+  width: 50%;
+  padding: 1em;
+  margin: 0 auto;
+  @include single-box-shadow(#444, 0, 0, 20px, 20px, false);
+}
+
 #container,
 #search_bar,
 #lines,
@@ -67,7 +85,6 @@ a {
 }
 
 #search_bar {
-  margin-top: 8em;
 }
 
 #container {
