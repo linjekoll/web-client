@@ -13,17 +13,8 @@ App.views.Vehicle = Backbone.View.extend({
     this.shape = this.options.shape;
     
     this.shape.attr({
-      fill: "#FFFFFF"
-    });
-
-    this.pulseAnimation = Raphael.animation({
       fill: "red"
-    },
-    2000, function() {
-      this.attr({
-        fill: "#FFFFFF"
-      })
-    }).repeat(4999);
+    });
   },
   
   timeDidChange: function() {
@@ -68,8 +59,7 @@ App.views.Vehicle = Backbone.View.extend({
     this.shape.stop().
       data("end_stations", this.model.
       get("end_stations")).
-      animate(this.movementAnimation).
-      animate(this.pulseAnimation);
+      animate(this.movementAnimation);
       
     return this;
   },
