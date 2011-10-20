@@ -34,6 +34,7 @@ App.models.GateKepper = Backbone.Model.extend({
   update: function(data){
     console.log("Update ", data);
     var line = window.lines.get(data.line_id)
+    console.log("Line: ", line);
     if(line) {
       var today = new Date();
       data.time = parseInt(data.arrival_time, 10) - (today.getTime() / 1000);

@@ -69,7 +69,9 @@ App.models.Line = Backbone.Model.extend({
    }
   */
   setMessage: function(json) {
+    console.log("model, before if: ", json);
     if (json.event === 'did_leave_station') {
+      console.log("Model: didleavestation: ",json);
       this.trigger("didLeaveStation", json);
     } else if (json.event === "update") {
       /* TODO: implement update callback */

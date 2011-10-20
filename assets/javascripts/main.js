@@ -57,13 +57,16 @@ $(function() {
     lineId = $self.data("line-id");
 
     var line = lines.get(lineId);
-
+    console.log(line);
+    console.log(lines);
     line.populateStops();
 
     var lineView = new App.views.Line({
       model: line
     });
-
+    
+    console.log("Lineview: ", lineView);
+    
     line.set({
       view: lineView
     })
