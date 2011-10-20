@@ -34,8 +34,9 @@ a {
 #lines li{
   display: inline-block;
   padding: 0.5em;
-  font-size: 5em;
+  font-size: 4em;
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
   @include border-radius(4px, 4px);
   @include single-box-shadow(#c1c1c1, 0px, 0px, 7px, 7px, false);
   background-color: #ECF3EC;
@@ -102,13 +103,20 @@ input[type='text'] {
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
+  @include border-radius();
+  @include single-box-shadow();
   
   ul {
    list-style-type: none;
    li {
+     cursor: pointer;
      right: 0px;
      margin-left: auto;
      margin-right: auto;
+     margin-bottom: 4px;
+     &:hover {
+       @include single-text-shadow(#ccc, -1px, -1px, 1px);
+     }
    }
  } 
 }
