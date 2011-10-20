@@ -67,6 +67,10 @@ a {
   @include single-box-shadow(#444, 0, 0, 10px, 10px, false);
 }
 
+ul#lines{
+  text-align: center;
+}
+
 input[type='text'] {
     border: 1px solid #d1d1d1;
     font: bold 12px Arial,Helvetica,Sans-serif;
