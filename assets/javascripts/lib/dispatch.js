@@ -37,6 +37,7 @@ var DispatchSocket = function(url) {
     @eventData String What data should we push to server?
   */
   this.send = function(eventName, eventData) {
+    console.log("Eventdata: ", eventData);
     var payload = JSON.stringify({
       event: eventName,
       data: eventData

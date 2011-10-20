@@ -9,7 +9,9 @@ window.lines = new App.models.Lines();
 
 //= require "lib/funfunfun"
 $(function() {
-  $.get("/static/line.template.html", function(data) {
+  $(".flash").delay(3000).slideUp();
+  
+  $.get("/lineart-enterprise-app-web/static/line.template.html", function(data) {
     $("#line-template").html(data);
   });
   
@@ -56,6 +58,8 @@ $(function() {
         
     App.globals.logger("Subscribing to line id " + lineId + " with provider id " + providerId);
   });
+  
+  
   
   lines.fetch();
 });

@@ -4,7 +4,7 @@ App.models.Line = Backbone.Model.extend({
     _.bindAll(this);
   },
 
-  urlRoot: "/lines",
+  urlRoot: "/lineart-enterprise-app-web/rest/lines",
 
   /*
     Downloads and populates the stops attribute

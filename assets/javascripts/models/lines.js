@@ -1,6 +1,6 @@
 App.models.Lines = Backbone.Collection.extend({
   model: App.models.Line,
   url: function(){
-    return "/lines?amount=30";
+    return "/lineart-enterprise-app-web/rest/lines?amount=30";
   }
 });

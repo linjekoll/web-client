@@ -32,6 +32,7 @@ App.models.GateKepper = Backbone.Model.extend({
     }
   */
   update: function(data){
+    console.log("Update ", data);
     var line = window.lines.get(data.line_id)
     if(line) {
       var today = new Date();

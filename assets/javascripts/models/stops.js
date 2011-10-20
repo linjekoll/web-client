@@ -4,6 +4,6 @@ App.models.Stops = Backbone.Collection.extend({
   },
   // model: App.models.Stop,
   url: function () {
-    return "/lines/" + this.id + "/" + "stops";
+    return "/lineart-enterprise-app-web/rest/lines/" + this.id + "/" + "stops";
   }
 });
