@@ -55,7 +55,6 @@ App.views.Vehicle = Backbone.View.extend({
   },
   
   start: function() {
-    console.debug("=========>", this.movementAnimation);
     this.shape.stop().
       data("end_stations", this.model.
       get("end_stations")).
