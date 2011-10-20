@@ -75,6 +75,10 @@ img.close-button{
   @include single-box-shadow(#444, 0, 0, 10px, 10px, false);
 }
 
+.line{
+  height: 200px;
+}
+
 ul#lines{
   text-align: center;
 }
