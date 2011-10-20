@@ -38,8 +38,9 @@ a {
 #lines li{
   display: inline-block;
   padding: 0.5em;
-  font-size: 5em;
+  font-size: 4em;
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
   @include border-radius(4px, 4px);
   @include single-box-shadow(#c1c1c1, 0px, 0px, 7px, 7px, false);
   background-color: #ECF3EC;
@@ -81,7 +82,61 @@ a {
   margin: 4em auto;
   padding: 2em;
   @include border-radius(4px, 4px);
-  @include single-box-shadow(#444, 0, 0, 20px, 20px, false);
+  @include single-box-shadow(#444, 0, 0, 10px, 10px, false);
+}
+
+input[type='text'] {
+    border: 1px solid #d1d1d1;
+    font: bold 12px Arial,Helvetica,Sans-serif;
+    color: #bebebe;
+    width: 150px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+}
+
+#search_key {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  width: 800px;
+  height: 40px;
+  font-size: 30px;
+  text-align: center; 
+}
+
+#search-result {
+  background-color: white;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  @include border-radius();
+  @include single-box-shadow();
+  
+  ul {
+   list-style-type: none;
+   li {
+     cursor: pointer;
+     right: 0px;
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 4px;
+     &:hover {
+       @include single-text-shadow(#ccc, -1px, -1px, 1px);
+     }
+   }
+ } 
 }
 
 #search_bar {

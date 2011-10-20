@@ -14,14 +14,8 @@
   <!-- CSS concatenated and minified via ant build script-->
   <link rel="stylesheet" href="stylesheets/application.css">
   <!-- end CSS-->
-  <script type="text/template" id="line-template">
-    <div class="line-header">
-      <strong>Linje: <%= name %></strong>
-    </div>
-    <div class="canvas">
-    </div>
-  </script>
-    
+  <script id="line-template" type="text/template" charset="utf-8"></script>
+  <script id="lines.template" type="text/template" charset="utf-8"></script>
   <script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
@@ -39,10 +33,11 @@
     
     <header id="search_bar">
       <form id="search_form" action="/search" method="post">
-        <input type="text" name="search_key" value="Sök efter en station" id="search_key">
-        <input type="submit" name="submit_search" value="Sök" id="submit_search">
+        <input type="text" name="search_key" placeholder="Sök efter en station" id="search_key">
       </form>
     </header>
+    
+    <div id="search-result"><ul></ul></div>
     
     <ul id="lines">
       <li data-provider-id="1" data-line-id="4">4</li>

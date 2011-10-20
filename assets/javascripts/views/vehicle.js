@@ -13,17 +13,8 @@ App.views.Vehicle = Backbone.View.extend({
     this.shape = this.options.shape;
     
     this.shape.attr({
-      fill: "#FFFFFF"
-    });
-
-    this.pulseAnimation = Raphael.animation({
       fill: "red"
-    },
-    2000, function() {
-      this.attr({
-        fill: "#FFFFFF"
-      })
-    }).repeat(4999);
+    });
   },
   
   timeDidChange: function() {
@@ -40,19 +31,36 @@ App.views.Vehicle = Backbone.View.extend({
     App.globals.logger("VehicleView#tripDidChange was triggered.");
     var destination = this.model.get("destination");
     var time = this.model.get('time')*1000;
+    var self = this;
     var movementAnimation = Raphael.animation({
       cx: destination.x,
       cy: destination.y
     },
-    time);
+    time, "linear", function() {
+      var endStations = this.data("end_stations");
+      var nextStation = self.model.get("next_station");
+      
+      for (var i=0; i < endStations.length; i++) {
+        /* Type casting FTW */
+        if(endStations[i] == nextStation){
+          /* We should remove vehicle when we're in the end */
+          self.shape.remove();
+        }
+      };
+    });
     this.movementAnimation = movementAnimation;
-    this.shape.stop().animate(movementAnimation).animate(this.pulseAnimation);
+    this.start();
     App.globals.logger("VehicleView: animation: ", movementAnimation);
     return this;
   },
   
   start: function() {
-    this.shape.stop().animate(this.movementAnimation).animate(this.pulseAnimation);
+    console.debug("=========>", this.movementAnimation);
+    this.shape.stop().
+      data("end_stations", this.model.
+      get("end_stations")).
+      animate(this.movementAnimation);
+      
     return this;
   },
 
