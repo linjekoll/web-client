@@ -138,7 +138,8 @@ App.views.Line = Backbone.View.extend({
     if (!vehicle) {
       var vehicle = new App.models.Vehicle({
         pixelX: previous.get("pixelX"),
-        pixelY: previous.get("pixelY")
+        pixelY: previous.get("pixelY"),
+        id: message.journey_id
       });
 
       var shape = this.getShape({
