@@ -6,7 +6,7 @@ App.globals.socket = new DispatchSocket("ws://46.16.232.244:3333");
 
 App.globals.slideDown = function() {
   var el = $(".line:first");
-  if (el) {
+  if (el && el.offset()) {
     var offset = el.offset().top;
     $('html,body').animate({
       scrollTop: offset
