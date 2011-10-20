@@ -102,6 +102,7 @@ App.views.Line = Backbone.View.extend({
         pixelX: stopAndCoord.xCoord,
         pixelY: yOffset
       });
+      
       var stopView = new App.views.Stop({
         model: stopAndCoord.stop,
         x: stopAndCoord.xCoord,
@@ -132,7 +133,8 @@ App.views.Line = Backbone.View.extend({
       var vehicle = new App.models.Vehicle({
         pixelX: previous.get("pixelX"),
         pixelY: previous.get("pixelY"),
-        id: message.journey_id
+        id: message.journey_id,
+        end_stations: this.model.get("end_stations")
       });
 
       this.model.vehicles.add(vehicle);
@@ -155,10 +157,13 @@ App.views.Line = Backbone.View.extend({
       var vehicleView = new App.views.Vehicle({
         model: vehicle,
         shape: shape,
-        end_stations: this.model.get("end_stations")
       });
     }
 
+    vehicle.set({
+      next_station: message.next_station
+    })
+    
     vehicle.set({
       coordinates: {
         x: previous.get("pixelX"),
