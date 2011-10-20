@@ -1,5 +1,6 @@
 //= require ./init
 
+//= require ./lib/jquery-ui-1.8.16.custom.min.js
 //= require ./lib/logger
 //= require ./lib/jquery
 //= require ./lib/underscore
