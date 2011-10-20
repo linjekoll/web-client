@@ -13,7 +13,29 @@ $(function() {
     $("#line-template").html(data);
   });
   
-  $("#lines li").click(function() {
+  var template = _.template('<li data-provider-id="1" data-line-id="<%= id %>"><%= name %></li>');    
+  var items = $("#lines");
+  
+  $("#search-result li").live("click", function() {
+    var list_ids = eval("[" + $(this).data("line-ids") + "]");
+    items.empty();
+    _.each(list_ids, function(line_id) {
+      var line = new App.models.Line({
+        id: line_id
+      }).fetch({
+        success: function(model) {
+         var data = template({
+           id: model.get("id"),
+           name: model.get("name")
+         });
+         
+         items.append(data);
+        }
+      })      
+    });
+  });
+  
+  $("#lines li").live("click", function() {
     var $self, providerId, lineId;
     
     $self      = $(this);
