@@ -96,6 +96,19 @@ $(function() {
           });
         };
       }
+      
+      setTimeout(function() {
+        
+        var el = $(".line:first");
+        if(el){
+          var offset = el.offset().top;
+          $('html,body').animate({
+            scrollTop: offset
+          },500);
+        }
+        
+        
+      }, 1000);
     },
   });
   
