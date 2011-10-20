@@ -53,6 +53,14 @@ a {
   }
 }
 
+img.close-button{
+  position: relative;
+  float: right;
+  top: -44px;
+  right: -44px;
+  cursor: pointer;  
+}
+
 #container,
 #search_bar,
 #lines,

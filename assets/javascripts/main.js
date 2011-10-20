@@ -54,10 +54,70 @@ $(function() {
       view: lineView
     })
         
+    var lineCookies = $.cookie("lines");
+    
+    if(lineCookies){
+      var found = false;
+      var line_ids = lineCookies.split(",");
+      for (var i=0; i < line_ids.length; i++) {
+        if(line_ids[i] == line.get("id")){
+          found = true;
+        }
+      };
+      
+      if(!found){
+        lineCookies = line_ids.push(line.get("id")).join(",")
+      }
+    } else {
+      lineCookies = line.get("id");
+    }
+    
+    $.cookie("lines", lineCookies);
+    
     App.globals.logger("Subscribing to line id " + lineId + " with provider id " + providerId);
   });
   
-  lines.fetch();
+  lines.fetch({
+    success: function(){
+      var lineCookies = $.cookie("lines");
+      if(lineCookies){
+        var line_ids = lineCookies.split(",")
+        
+        for (var i=0; i < line_ids.length; i++) {
+          var line = lines.get(line_ids[i]);
+          line.populateStops();
+
+          var lineView = new App.views.Line({
+            model: line
+          });
+
+          line.set({
+            view: lineView
+          });
+        };
+      }
+    },
+  });
+  
+  /*
+    Close button for line view
+  */
+  $("img.close-button").live("click", function() {
+    var main = $(this).parent().parent()
+    var id = main.attr("id");
+    var okay = [];
+    var lineCookies = $.cookie("lines");
+    var line_ids = lineCookies.split(",");
+    for (var i=0; i < line_ids.length; i++) {
+      if(line_ids[i] != id){
+        okay.push(line_ids[i]);
+      }
+    }
+    
+    $.cookie("lines", okay.join(","));
+    
+    main.hide();
+  });
 });
 
 App.globals.gateKeeper = new App.models.GateKepper();
