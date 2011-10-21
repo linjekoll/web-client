@@ -36,12 +36,14 @@ App.models.Line = Backbone.Model.extend({
     /* Calculate total time, now that the collection has been populated */
     this.calculateTotalTime();
     this.trigger("didFetch");
-
+    var self = this;
     /* Subscribing to websocket channel */
-    App.globals.socket.send("subscribe.trip.update", [{
-      provider_id: this.get("provider"),
-      line_id: this.get("id")
+    setTimeout(function() {
+          App.globals.socket.send("subscribe.trip.update", [{
+      provider_id: self.get("provider_id"),
+      line_id: self.get("id")
     }]);
+    }, 1000);
   },
 
   calculateTotalTime: function() {

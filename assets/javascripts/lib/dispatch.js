@@ -16,7 +16,7 @@
     });
 */
 var DispatchSocket = function(url) {
-  var conn = new WebSocket(url);
+  // var conn = new WebSocket(url);
 
   var callbacks = {};
 
@@ -43,23 +43,23 @@ var DispatchSocket = function(url) {
       data: eventData
     });
     
-    conn.send(payload);
+   // conn.send(payload);
     return this;
   };
   
-  /* Private methods */
-  conn.onmessage = function(evt) {
-    var json = JSON.parse(evt.data)
-    dispatch(json.event, json.data);
-  };
-
-  conn.onclose = function() {
-    dispatch("close", null);
-  };
-
-  conn.onopen = function() {
-    dispatch("open", null);
-  };
+  // /* Private methods */
+  // conn.onmessage = function(evt) {
+  //   var json = JSON.parse(evt.data)
+  //   dispatch(json.event, json.data);
+  // };
+  // 
+  // conn.onclose = function() {
+  //   dispatch("close", null);
+  // };
+  // 
+  // conn.onopen = function() {
+  //   dispatch("open", null);
+  // };
 
   var dispatch = function(event_name, message) {
     var chain = callbacks[event_name];

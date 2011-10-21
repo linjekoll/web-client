@@ -97,27 +97,20 @@ $(function() {
       App.globals.slideDown();
     }, 1000);
   });
-
+  
+  var list = [];
   lines.fetch({
     success: function() {
       var lineCookies = $.cookie("lines");
       if (lineCookies) {
         var line_ids = lineCookies.split(",")
-
-        for (var i = 0; i < line_ids.length; i++) {
-          var line = lines.get(line_ids[i]);
+  
+        for (var i = 0; i < list.length; i++) {
+          var line = lines.get(list[i]);
           line.populateStops();
-
-          var lineView = new App.views.Line({
-            model: line
-          });
-
-          line.set({
-            view: lineView
-          });
         };
       }
-
+  
       setTimeout(function() {
         App.globals.slideDown();
       },
@@ -125,6 +118,18 @@ $(function() {
     },
   });
 
+  lines.bind("reset", function() {
+    setTimeout(function() {
+      for (var i=0; i < list.length; i++) {
+        var line = list[i];
+        
+        var lineView = new App.views.Line({
+            model: line
+        });
+        line.populateStops();
+      };
+    }, 2000);
+  });
   /*
     Close button for line view
   */
